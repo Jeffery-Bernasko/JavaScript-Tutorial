@@ -1,11 +1,21 @@
 // Listen for the submit button(calculate) and add an event listner
 
-const loan_button = document.querySelector('#loan-form').addEventListener('submit', calculateResult);
+const loan_button = document.querySelector('#loan-form').addEventListener('submit', function(e){
+    // To delay for some time before dislaying results
+    document.getElementById('result').style.display = 'none';
+ 
+    // Show Loader
+    document.getElementById('loading').style.display = 'block'
+    
+    setTimeout(calculateResult,2000)
+
+    e.preventDefault();
+});
 
 
 // Calculate Result
-function calculateResult(e){
-    console.log("Submit")
+function calculateResult(){
+
 
     // UI variables for the form fields
     const amount = document.getElementById('amount');
@@ -31,13 +41,25 @@ function calculateResult(e){
         monthly_payments.value = monthly.toFixed(2)
         total_payments.value = (monthly * calculatePayments).toFixed(2)
         total_interest.value = ((monthly * calculatePayments) - principal).toFixed(2)
+
+        // Show results
+        document.getElementById('result').style.display = 'block';
+
+        // Hide the loader gif
+        document.getElementById('loading').style.display = 'none';
     } else {
         showError('Please Check your numbers');
     }
-    e.preventDefault();
+    
 }
 
 function showError(message){
+
+    // Hide results
+    document.getElementById('result').style.display = 'none';
+
+    // Hide the loader gif
+    document.getElementById('loading').style.display = 'none';
     // Create a div
     const errorDiv = document.createElement('div');
 
