@@ -4,7 +4,7 @@ document.getElementById('button3'),addEventListener('click',getAPIData);
 
 
 
-function getText(){
+function getText(e){
     // Using the fetch API
     fetch('text.txt')
     .then(function(res){
@@ -17,6 +17,7 @@ function getText(){
     catch(function(err){
         console.log(err);
     })
+    e.preventDefault();
 }
 
 function getJson(e){
@@ -46,7 +47,7 @@ function getJson(e){
     e.preventDefault();
 }
 
-function getAPIData(){
+function getAPIData(e){
     fetch('https://api.github.com/users').
     then(function(res){
         return res.json()
@@ -68,4 +69,5 @@ function getAPIData(){
     .catch(function(err){
         console.log(err);
     })
+    e.preventDefault();
 }
