@@ -13,7 +13,7 @@ class UI{
 
     addBookToList(book){
     const list = document.querySelector('#book-list');
-
+    // Check if book obj is undefined or null before accessing its properties
     if(book){
  
     // Create a tr element
